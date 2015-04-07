@@ -1,6 +1,8 @@
 Messages = new Meteor.Collection('messages');
 
 if (Meteor.isClient) {
+  Meteor.subscribe('messages');
+
   // counter starts at 0
   Session.setDefault('counter', 0);
 
@@ -40,5 +42,9 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+  });
+
+  Meteor.publish('messages', function() {
+    return Messages.find({},{sort:{date: -1}, limit: 10});
   });
 }
