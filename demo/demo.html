@@ -6,9 +6,24 @@
   <h1>Welcome to Meteor!</h1>
 
   {{> hello}}
+{{> chat}}
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
+</template>
+<template name="chat">
+  <form>
+    <input type="text" id="inputMessage" name="newMessage"/>
+    <button type="submit" id="submitMessage">Go</button>
+  </form>
+  <ul>
+    {{#each messages}}
+      <li>
+        {{text}} <span> {{date}}</span>
+      </li>
+    {{/each}}
+  </ul>
+
 </template>
