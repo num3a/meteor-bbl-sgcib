@@ -63,7 +63,7 @@ if (Meteor.isServer) {
     Meteor.methods({
         postMessage:
             function (message,username){
-                Messages.insert({userName:username,text: message, date: new Date()})
+                Messages.insert({userName:username,text: message, date: new Date()});
             }
     });
 
