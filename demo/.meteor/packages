@@ -6,3 +6,7 @@
 
 meteor-platform
 insecure
+#autopublish
+
+materialize:materialize
+momentjs:moment

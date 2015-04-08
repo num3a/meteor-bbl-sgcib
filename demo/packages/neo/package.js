@@ -14,7 +14,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1');
   api.addFiles('neo.js');
 
-  api.Export('Neo');
+  //api.Exports('Neo');
 });
 
 Package.onTest(function(api) {

@@ -1,29 +1,67 @@
 <head>
-  <title>demo</title>
+    <title>demo</title>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<div class="container">
+
+    <h1 class="deep-purple white-text lighten-2 z-depth-1">Welcome to Meteor!</h1>
 
   {{> hello}}
-{{> chat}}
+  {{> chat}}
+</div>
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+    <div class="row">
+        <div class="col s12 m8 l10">
+            <p>You've pressed the button {{counter}} times.</p>
+            <button class="btn waves-effect waves-light blue lighten-3">Click Me</button>
+
+        </div>
+        <div class="col s12 m4 l2">
+        </div>
+    </div>
 </template>
 <template name="chat">
-  <form>
-    <input type="text" id="inputMessage" name="newMessage"/>
-    <button type="submit" id="submitMessage">Go</button>
-  </form>
-  <ul>
-    {{#each messages}}
-      <li>
-        {{text}} <span> {{date}}</span>
-      </li>
-    {{/each}}
-  </ul>
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <div class="col s12 m12 l12">
+                    <label for="userName">Username:</label>
+                    <input class="input grey lighten-3" type="text" id="userName" name="userName" />
+                </div>
+                <div class="col s12 m8 l10">
+                    <label for="userName">Enter a new message:</label>
+                    <input class="input grey lighten-3" type="text" id="inputMessage" name="newMessage" required/>
+                </div>
+                <div class="col s12 m4 l2">
+                    <button class="btn waves-effect waves-light red lighten-3" type="submit" id="submitMessage">Post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <h3 class="blue-text darken-4◊">Messages:</h3>
+
+    <div class="row">
+        <ul class="collection">
+          {{#each messages}}
+              <li class="collection-item">
+                  <div>
+                     <span>{{userName}} : {{text}}</span>
+                  </div>
+
+                  <div>
+                      <span>Time: </span><span> {{formatDate date}}</span>
+                  </div>
+              </li>
+          {{/each}}
+        </ul>
+    </div>
+
 
 </template>
