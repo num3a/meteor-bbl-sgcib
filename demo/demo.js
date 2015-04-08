@@ -1,4 +1,9 @@
 Messages = new Meteor.Collection('messages');
+Messages.allow({
+    insert:function(){
+        return true;
+    }
+});
 
 if (Meteor.isClient) {
     Meteor.subscribe('messages');
@@ -36,9 +41,9 @@ if (Meteor.isClient) {
                 Materialize.toast('Enter a user name.', 4000);
                 return;
             }
+            //Messages.insert({userName:userName,text: messageToInsert, date: new Date()});
 
-            Messages.insert({userName:userName,text: messageToInsert, date: new Date()});
-
+            Meteor.call('postMessage', messageToInsert,userName);
             event.target.newMessage.value = "";
             console.log('Message:', messageToInsert);
         }
@@ -53,6 +58,13 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
     Meteor.startup(function () {
         // code to run on server at startup
+    });
+
+    Meteor.methods({
+        postMessage:
+            function (message,username){
+                Messages.insert({userName:username,text: message, date: new Date()})
+            }
     });
 
     Meteor.publish('messages', function() {
